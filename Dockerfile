@@ -4,8 +4,11 @@ RUN a2enmod rewrite
 
 COPY . /var/www/app
 
-RUN ln -s /var/www/app/public /var/www/html
+RUN rm -rf /var/www/html \
+    && ln -s /var/www/app/public /var/www/html
 
 WORKDIR /var/www/app
 
 RUN chown -R www-data:www-data /var/www/app
+
+EXPOSE 80
